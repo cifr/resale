@@ -1,4 +1,5 @@
 library(plyr)
+library(stats)
 
 if (!exists("ddp")) {
     furl <- 'https://data.gov.sg/dataset/7a339d20-3c57-4b11-a695-9348addpd7614/download'
@@ -7,7 +8,6 @@ if (!exists("ddp")) {
     if (!file.exists(fzip)) download.file(furl, destfile=fzip, mode='wb', quiet=TRUE)
     if (!file.exists(fdat)) unzip(fzip, files=c(fdat))
     
-    print("foobar")
     ddp <- read.csv(fdat, as.is=TRUE)
     ddp$month <- as.Date(paste0(ddp$month, "-01"), "%Y-%m-%d")
     ddp$town <- factor(ddp$town)

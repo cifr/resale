@@ -1,4 +1,4 @@
-
+library(shiny)
 source("ddp.R")
 
 library(ggplot2)
@@ -30,7 +30,7 @@ shinyServer(
         output$resale_price <- renderText({
             x <- as.data.frame(lm.arg())
             est <- paste0("S$ ", pp(predict(ddp.lm0, x)))
-            paste0("Price Estimation: ", est)
+            paste0("Flat Price Estimation: ", est)
         })
         
         output$message <- renderText({

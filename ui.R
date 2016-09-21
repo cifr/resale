@@ -1,3 +1,4 @@
+library(shiny)
 source("ddp.R")
 
 shinyUI(fluidPage(
@@ -11,10 +12,11 @@ shinyUI(fluidPage(
                      min=ddp.min_floor_area, max=ddp.max_floor_area, step=1),
         sliderInput("age_year", "Flat Age (Y)", ddp.default$age_year,
                      min=5, max=99, step=1),
-        p(a("Resale Flat Prices",
-            href="https://data.gov.sg/dataset/resale-flat-prices"),
-          "[data.gov.sg]"),
         br(),
+        p("Prediction model based on historical data from ",
+          a("Resale Flat Prices",
+            href="https://data.gov.sg/dataset/resale-flat-prices"),
+          "(data.gov.sg)"),
         br()
     ),
     mainPanel(
