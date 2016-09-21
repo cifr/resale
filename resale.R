@@ -2,7 +2,7 @@ library(plyr)
 library(stats)
 
 if (!exists("ddp")) {
-    furl <- 'https://data.gov.sg/dataset/7a339d20-3c57-4b11-a695-9348addpd7614/download'
+    furl <- 'https://data.gov.sg/dataset/7a339d20-3c57-4b11-a695-9348adfd7614/download'
     fzip <- 'resale-flat-prices.zip'
     fdat <- 'resale-flat-prices-based-on-registration-date-from-march-2012-onwards.csv'
     if (!file.exists(fzip)) download.file(furl, destfile=fzip, mode='wb', quiet=TRUE)
