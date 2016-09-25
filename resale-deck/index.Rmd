@@ -1,0 +1,43 @@
+---
+title       : Resale Flat Prices
+subtitle    : [Developing Data Products]
+author      : Bernard yap
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [bootstrap]   # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+<style>.title-slide { background-color: #FFFFFF }</style>
+
+## Why Resale Flat Prices?
+
+* In Singapore, HDB flats are home to over 80% of its resident population.
+* This application provides a means to explore the official transaction data,
+* ... and provide a simple price estimation for a given flat type by towns.
+
+---
+
+## The Prediction Model //TODO
+
+* Describe data source
+* Describe linear model
+* show one prediction.
+
+---
+
+## How Does it Work?
+
+![](./appcapture.png)
+
+---
+
+## Remarks / Future Works 
+
+* Take it with a grain of salt. Many factors not accounted for.
+* No checks for invalid combination of flat type / floor area yet.
+* Yet to build automatic data source update detection & refresh. 
+* The full source code is available at, https://github.com/cifr/resale
