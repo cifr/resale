@@ -36,13 +36,17 @@ shinyServer(
         output$resale_price <- renderText({
             x <- as.data.frame(lm.arg())
             est <- paste0("S$", pp(predict(ddp.lm0, x)))
-            paste0("Flat Price Estimation: ", est)
+            paste0("Estimated Flat Price: ", est)
         })
         
         output$message <- renderText({
+            arg <- paste0("{", input$flat_type, ", ", input$town, ", ",
+                          input$floor_area_sqm, "SQM, ",
+                          input$age_year, "Y}")
             if (nrow(xdf()) == 0) {
-                paste0("No historical data available for ", input$flat_type, 
-                       " flat in ", input$town, ".")
+                paste0("No historical data available for ", arg)
+            } else {
+                arg
             }
         })
                 
@@ -52,7 +56,7 @@ shinyServer(
             y <- predict(ddp.lm0, as.data.frame(lm.arg()))
             g <- ggplot(x, aes(x=month, y=resale_price, color=floor_area_sqm)) + geom_point()
             g <- g + scale_color_gradient(name="Floor Area (SQM)", high="#132B43", low="#56B1F7") 
-            g <- g + geom_hline(yintercept=y, color="red", lab)
+            g <- g + geom_hline(yintercept=y, color="black", lab)
             g <- g + scale_y_continuous(labels=comma)
             g <- g + xlab("Transaction Date") + ylab("Resale Price (S$)")
             g
