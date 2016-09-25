@@ -9,7 +9,13 @@ pp <- function(df, ns=0) {
 }
 
 shinyServer(
-    function(input, output) {
+    function(input, output, session) {
+        observeEvent({c(input$flat_type)}, {
+            x <- getFloorLimits(input$flat_type)
+            updateSliderInput(session, "floor_area_sqm", "Floor Area (SQM)",
+                              min=x[1], max=x[2], step=1)
+        })
+
         lm.arg <- reactive({
             x <- data.frame(cbind(input$flat_type,
                                   input$town,
@@ -29,7 +35,7 @@ shinyServer(
         
         output$resale_price <- renderText({
             x <- as.data.frame(lm.arg())
-            est <- paste0("S$ ", pp(predict(ddp.lm0, x)))
+            est <- paste0("S$", pp(predict(ddp.lm0, x)))
             paste0("Flat Price Estimation: ", est)
         })
         
@@ -45,7 +51,7 @@ shinyServer(
             if (nrow(x) == 0) return(NULL)
             y <- predict(ddp.lm0, as.data.frame(lm.arg()))
             g <- ggplot(x, aes(x=month, y=resale_price, color=floor_area_sqm)) + geom_point()
-            g <- g + scale_color_gradient(name="Floor Area (SQM)") 
+            g <- g + scale_color_gradient(name="Floor Area (SQM)", high="#132B43", low="#56B1F7") 
             g <- g + geom_hline(yintercept=y, color="red", lab)
             g <- g + scale_y_continuous(labels=comma)
             g <- g + xlab("Transaction Date") + ylab("Resale Price (S$)")

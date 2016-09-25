@@ -10,9 +10,10 @@ shinyUI(fluidPage(
             selectInput("town", "Town", ddp.towns,
                         selected=ddp.default$town),
             sliderInput("floor_area_sqm", "Floor Area (SQM)", ddp.default$floor_area_sqm,
-                         min=ddp.min_floor_area, max=ddp.max_floor_area, step=1),
+                        min=ddp.default_floor_limits[1], max=ddp.default_floor_limits[2],
+                        step=1),
             sliderInput("age_year", "Flat Age (Y)", ddp.default$age_year,
-                         min=5, max=99, step=1),
+                         min=5, max=max(ddp$age_year), step=1),
             br(), br(), p(a("https://github.com/cifr/resale", href="https://github.com/cifr/resale"))
         ),
         mainPanel(

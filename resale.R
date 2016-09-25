@@ -21,10 +21,14 @@ if (!exists("ddp")) {
 
     ddp.lm0 <- lm(resale_price ~ flat_type + town + floor_area_sqm + age_year, data=ddp)
     
-    ddp.min_floor_area <- round(min(ddp$floor_area_sqm))
-    ddp.max_floor_area <- round(max(ddp$floor_area_sqm))
     ddp.towns <- levels(ddp$town)
     ddp.flat_types <- levels(ddp$flat_type)
 }
 
+getFloorLimits <- function(flat_type) {
+    xdf <- ddp[ddp$flat_type==flat_type,]
+    c(min(xdf$floor_area_sqm), max(xdf$floor_area_sqm))
+}
+
 ddp.default <- ddp[sample(nrow(ddp), 1),]
+ddp.default_floor_limits <- getFloorLimits(ddp.default$flat_type)
