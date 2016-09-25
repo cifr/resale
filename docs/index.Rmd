@@ -16,9 +16,11 @@ knit        : slidify::knit2slides
 ## Why Resale Flat Prices?
 
 * In Singapore, HDB flats are home to over 80% of its resident population.
-* This application provides a means to explore the official transaction data,
-* ... and provide a simple price estimation for a given flat type by towns.
-* Historical data price data available at, https://data.gov.sg/dataset/resale-flat-prices.
+* Resale flats are pre-owned public housing availble for purchase in the open market.
+* Historical price data available at, https://data.gov.sg/dataset/resale-flat-prices.
+* This application provides a means to explore the official transaction data.
+* And provides a simple price estimation for a given flat type by towns.
+* Access the app at: https://cifr.shinyapps.io/resale/
 
 ---
 
