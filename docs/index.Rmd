@@ -1,6 +1,6 @@
 ---
 title       : Resale Flat Prices
-subtitle    : [Developing Data Products]
+subtitle    : Developing Data Products
 author      : Bernard yap
 job         : 
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
@@ -18,14 +18,23 @@ knit        : slidify::knit2slides
 * In Singapore, HDB flats are home to over 80% of its resident population.
 * This application provides a means to explore the official transaction data,
 * ... and provide a simple price estimation for a given flat type by towns.
+* Historical data price data available at, https://data.gov.sg/dataset/resale-flat-prices.
 
 ---
 
-## The Prediction Model //TODO
+## The Prediction Model
 
-* Describe data source
-* Describe linear model
-* show one prediction.
+* Linear regression model considering  *flat type*, *town*, *floor area*
+and the *age of the flat*.
+* Example resale flat price estimation: 
+
+```{r}
+source("../resale.R")
+x <- data.frame(flat_type=c("4 ROOM"), town=c("TAMPINES"),
+                floor_area_sqm=c(sample(70:130, 1)), age_year=c(10))
+print(x)
+predict(ddp.lm0, x)
+```
 
 ---
 

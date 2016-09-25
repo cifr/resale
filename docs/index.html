@@ -52,6 +52,7 @@
 <li>In Singapore, HDB flats are home to over 80% of its resident population.</li>
 <li>This application provides a means to explore the official transaction data,</li>
 <li class='..'>and provide a simple price estimation for a given flat type by towns.</li>
+<li>Historical data price data available at, <a href="https://data.gov.sg/dataset/resale-flat-prices">https://data.gov.sg/dataset/resale-flat-prices</a>.</li>
 </ul>
 
   </article>
@@ -60,14 +61,31 @@
 
 <slide class="" id="slide-2" style="background:;">
   <hgroup>
-    <h2>The Prediction Model //TODO</h2>
+    <h2>The Prediction Model</h2>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>Describe data source</li>
-<li>Describe linear model</li>
-<li>show one prediction.</li>
+<li>Linear regression model considering  <em>flat type</em>, <em>town</em>, <em>floor area</em>
+and the <em>age of the flat</em>.</li>
+<li>Example resale flat price estimation: </li>
 </ul>
+
+<pre><code class="r">source(&quot;../resale.R&quot;)
+x &lt;- data.frame(flat_type=c(&quot;4 ROOM&quot;), town=c(&quot;TAMPINES&quot;),
+                floor_area_sqm=c(sample(70:130, 1)), age_year=c(10))
+print(x)
+</code></pre>
+
+<pre><code>##   flat_type     town floor_area_sqm age_year
+## 1    4 ROOM TAMPINES             76       10
+</code></pre>
+
+<pre><code class="r">predict(ddp.lm0, x)
+</code></pre>
+
+<pre><code>##        1 
+## 454025.4
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -112,7 +130,7 @@
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='The Prediction Model //TODO'>
+        data-slide=2 title='The Prediction Model'>
          2
       </a>
     </li>
