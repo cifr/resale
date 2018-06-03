@@ -4,13 +4,11 @@ library(stats)
 if (!exists("ddp")) {
     furl <- 'https://data.gov.sg/dataset/resale-flat-prices/download'
     fzip <- 'resale-flat-prices.zip'
-    #fdat <- 'resale-flat-prices-based-on-registration-date-from-jan-2015-onwards.csv'
+
+    download.file(furl, destfile=fzip, mode='wb', quiet=TRUE)
+    
     fn <- unzip(fzip, list=TRUE)$Name
     fdat <- fn[grep("onwards", fn)[1]]
-    
-    #if (!file.exists(fzip)) 
-    download.file(furl, destfile=fzip, mode='wb', quiet=TRUE)
-    #if (!file.exists(fdat)) 
     unzip(fzip, files=c(fdat))
     
     ddp <- read.csv(fdat, as.is=TRUE)
