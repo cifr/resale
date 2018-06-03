@@ -9,6 +9,8 @@ shinyUI(fluidPage(
                         selected=ddp.default$flat_type),
             selectInput("town", "Town", ddp.towns,
                         selected=ddp.default$town),
+            selectInput("storey_range", "Storey Range", ddp.storey_range,
+                        selected=ddp.default$storey_range),
             sliderInput("floor_area_sqm", "Floor Area (SQM)", ddp.default$floor_area_sqm,
                         min=ddp.default_floor_limits[1], max=ddp.default_floor_limits[2],
                         step=1),
@@ -19,7 +21,9 @@ shinyUI(fluidPage(
         mainPanel(
             h3(textOutput("resale_price")),
             textOutput("message"),
-            plotOutput("resale_chart")
+            plotOutput("resale_chart"),
+            hr(),
+            p(class="small", textOutput("dataset"))
         )),
     hr(),
     p(class="small", "This prediction model built based on historical data from ",

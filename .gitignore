@@ -23,7 +23,7 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 .Rproj.user
-resale-flat-prices-based-on-registration-date-from-march-2012-onwards.csv
+resale-flat-prices*.csv
 resale-flat-prices.zip
 rsconnect
 README.html

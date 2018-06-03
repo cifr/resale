@@ -19,10 +19,11 @@ shinyServer(
         lm.arg <- reactive({
             x <- data.frame(cbind(input$flat_type,
                                   input$town,
+                                  input$storey_range,
                                   input$floor_area_sqm,
                                   input$age_year),
                             stringsAsFactors=FALSE)
-            names(x) <- c("flat_type", "town", "floor_area_sqm", "age_year")
+            names(x) <- c("flat_type", "town", "storey_range", "floor_area_sqm", "age_year")
             x$floor_area_sqm <- as.numeric(x$floor_area_sqm)
             x$age_year <- as.numeric(x$age_year)
             x
@@ -60,6 +61,10 @@ shinyServer(
             g <- g + scale_y_continuous(labels=comma)
             g <- g + xlab("Transaction Date") + ylab("Resale Price (S$)")
             g
+        })
+        
+        output$dataset <- renderText({
+            paste0("Dataset: ", fdat)
         })
     }
 )

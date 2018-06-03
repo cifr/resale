@@ -2,11 +2,16 @@ library(plyr)
 library(stats)
 
 if (!exists("ddp")) {
-    furl <- 'https://data.gov.sg/dataset/7a339d20-3c57-4b11-a695-9348adfd7614/download'
+    furl <- 'https://data.gov.sg/dataset/resale-flat-prices/download'
     fzip <- 'resale-flat-prices.zip'
-    fdat <- 'resale-flat-prices-based-on-registration-date-from-march-2012-onwards.csv'
-    if (!file.exists(fzip)) download.file(furl, destfile=fzip, mode='wb', quiet=TRUE)
-    if (!file.exists(fdat)) unzip(fzip, files=c(fdat))
+    #fdat <- 'resale-flat-prices-based-on-registration-date-from-jan-2015-onwards.csv'
+    fn <- unzip(fzip, list=TRUE)$Name
+    fdat <- fn[grep("onwards", fn)[1]]
+    
+    #if (!file.exists(fzip)) 
+    download.file(furl, destfile=fzip, mode='wb', quiet=TRUE)
+    #if (!file.exists(fdat)) 
+    unzip(fzip, files=c(fdat))
     
     ddp <- read.csv(fdat, as.is=TRUE)
     ddp$month <- as.Date(paste0(ddp$month, "-01"), "%Y-%m-%d")
@@ -19,10 +24,11 @@ if (!exists("ddp")) {
     ddp <- ddp[, c("month", "town", "flat_type", "floor_area_sqm", "flat_model", 
                 "age_year", "storey_range", "resale_price")]
 
-    ddp.lm0 <- lm(resale_price ~ flat_type + town + floor_area_sqm + age_year, data=ddp)
+    ddp.lm0 <- lm(resale_price ~ flat_type + town + floor_area_sqm + age_year + storey_range, data=ddp)
     
     ddp.towns <- levels(ddp$town)
     ddp.flat_types <- levels(ddp$flat_type)
+    ddp.storey_range <- levels(ddp$storey_range)
 }
 
 getFloorLimits <- function(flat_type) {
