@@ -4,7 +4,7 @@ A simple linear model for estimating resale flat prices in Singapore based on hi
 [Resale flats](http://www.hdb.gov.sg/cs/infoweb/residential/buying-a-flat/resale) are pre-owned public housing in
 Singapore availble for purchase in the open market. 
 
-* Access the app at: [https://doppio.lofi0.net/shiny/resale/](https://doppio.lofi0.net/shiny/resale/)
+* Access the app at: [http://doppio.lofi0.net:3839/resale/](http://doppio.lofi0.net:3839/resale/)
 
 -----
 
